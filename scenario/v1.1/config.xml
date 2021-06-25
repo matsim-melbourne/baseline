@@ -1,4 +1,4 @@
-bicycle<?xml version="1.0" ?>
+<?xml version="1.0" ?>
 <!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v2.dtd">
 <config>
 
@@ -11,12 +11,12 @@ bicycle<?xml version="1.0" ?>
 
 	<module name="network">
 		<!-- Road and bicycle infrastructure with public transport, from RMIT -->
-		<param name="inputNetworkFile" value="./network/network-v1.1.xml.gz" />
+		<param name="inputNetworkFile" value="./network/network-v1.1_bicycle.xml.gz" />
 	</module>
 
 	<module name="plans">
 		<!-- 1% sample -->
-		<param name="inputPlansFile" value="./demand/1pct/plan.xml.gz" />
+		<param name="inputPlansFile" value="./demand/1pct/plan_bicycle.xml.gz" />
 	</module>
 
 	<module name="controler">
@@ -76,40 +76,40 @@ bicycle<?xml version="1.0" ?>
 	<module name="planCalcScore">
 		<parameterset type="scoringParameters">
 			<param name="earlyDeparture" value="-0.0" />
-			<param name="lateArrival" value="-36.8124904" />
-			<param name="marginalUtilityOfMoney" value="11.4979254" />
-			<param name="performing" value="12.2708301" />
+			<param name="lateArrival" value="-31.27237618	" />
+			<param name="marginalUtilityOfMoney" value="0.5159" />
+			<param name="performing" value="10.42412539" />
 			<param name="subpopulation" value="null" />
 			<param name="utilityOfLineSwitch" value="-1.0" />
 			<param name="waiting" value="-0.0" />
-			<param name="waitingPt" value="-12.2708301" />
+			<param name="waitingPt" value="-20.84825079" />
 
 			<parameterset type="modeParams" ><!-- car -->
 				<param name="mode" value="car" />
-				<param name="constant" value="2.3904311" />
+				<param name="constant" value="0.0" />
 				<param name="marginalUtilityOfTraveling_util_hr" value="-0.0" />
 				<param name="monetaryDistanceRate" value="-0.0007080" />
 			</parameterset>
 
 			<parameterset type="modeParams" ><!-- pt -->
 				<param name="mode" value="pt" />
-				<param name="constant" value="-0.1909135" />
-				<param name="marginalUtilityOfTraveling_util_hr" value="7.7795329" />
+				<param name="constant" value="-1.48297513" />
+				<param name="marginalUtilityOfTraveling_util_hr" value="-0.09461678" />
 				<param name="dailyMonetaryConstant" value="-8.6" />
 			</parameterset>
 
 			<parameterset type="modeParams" ><!-- walk -->
 				<param name="mode" value="walk" />
-				<param name="constant" value="2.4587140" />
+				<param name="constant" value="0.38552456" />
 				<param name="marginalUtilityOfDistance_util_m" value="0.0" />
-				<param name="marginalUtilityOfTraveling_util_hr" value="4.9205768" />
+				<param name="marginalUtilityOfTraveling_util_hr" value="-0.43375109" />
 			</parameterset>
 
 			<parameterset type="modeParams" ><!-- bicycle -->
 				<param name="mode" value="bicycle" />
-				<param name="constant" value="-0.6582497" />
+				<param name="constant" value="-3.03305065" />
 				<param name="marginalUtilityOfDistance_util_m" value="0.0" />
-				<param name="marginalUtilityOfTraveling_util_hr" value="7.2969701" />
+				<param name="marginalUtilityOfTraveling_util_hr" value="-2.13717694" />
 			</parameterset>
 
 			<parameterset type="activityParams" ><!-- Home -->

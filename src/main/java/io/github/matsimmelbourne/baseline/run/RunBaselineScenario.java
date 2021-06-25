@@ -47,7 +47,7 @@ public class RunBaselineScenario {
 
     public RunBaselineScenario(String inputDir, String configName, String cleanNetwork) throws FileNotFoundException, IOException {
 
-            this.configFile = inputDir + "/" + configName; // e.g. "./scenarios/v1.1/config.xml"
+            this.configFile = inputDir + "/" + configName; // e.g. "./scenario/v1.1/config.xml"
             this.inputDir = inputDir;
             this.cleanNetwork=cleanNetwork; //true or false
             this.config = ConfigUtils.loadConfig(configFile, new BicycleConfigGroup());
@@ -55,7 +55,6 @@ public class RunBaselineScenario {
             fillConfigWithBicycleStandardValues(config, false);
 
             this.scenario = ScenarioUtils.loadScenario(config);
-            createVehiclesForScenario(scenario);
 
             if (cleanNetwork.equals("true")) {
                 System.out.println("About to clean the network");
@@ -94,15 +93,6 @@ public class RunBaselineScenario {
         }
     }
 
-    private static void createVehiclesForScenario(Scenario scenario){
-        VehicleType car = VehicleUtils.getFactory().createVehicleType(Id.create(TransportMode.car, VehicleType.class));
-        scenario.getVehicles().addVehicleType(car);
-        VehicleType bicycle = VehicleUtils.getFactory().createVehicleType(Id.create("bicycle", VehicleType.class));
-        bicycle.setMaximumVelocity(4.7);
-        bicycle.setPcuEquivalents(0.25);
-        scenario.getVehicles().addVehicleType(bicycle);
-        scenario.getConfig().qsim().setVehiclesSource(QSimConfigGroup.VehiclesSource.modeVehicleTypesFromVehiclesData);
-    }
 
     public void run(){
         Bicycles.addAsOverridingModule(controler);
