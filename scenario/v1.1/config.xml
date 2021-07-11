@@ -16,13 +16,13 @@
 
 	<module name="plans">
 		<!-- 1% sample -->
-		<param name="inputPlansFile" value="./demand/1pct/plan_bicycle.xml.gz" />
+		<param name="inputPlansFile" value="./demand/10pct/plan_bicycle.xml.gz" />
 	</module>
 
 	<module name="controler">
-		<param name="outputDirectory" value="./output/v1.1/1pct/exp1/" />
+		<param name="outputDirectory" value="./output/v1.1/10pct/exp1_withMC/" />
 		<param name="firstIteration" value="0" />
-		<param name="lastIteration" value="5" />
+		<param name="lastIteration" value="100" />
 		<param name="mobsim" value="qsim" />
 	</module>
 
@@ -32,8 +32,8 @@
 		<parameterset type="intermodalAccessEgress">
 			<param name="mode" value="walk" />
 			<param name="maxRadius" value="10000" />
-			<param name="searchExtensionRadius" value="5000" />
-			<param name="initialSearchRadius" value="5000" />
+			<param name="searchExtensionRadius" value="500" />
+			<param name="initialSearchRadius" value="500" />
 		</parameterset>
 
 	</module>
@@ -94,6 +94,7 @@
 			<parameterset type="modeParams" ><!-- pt -->
 				<param name="mode" value="pt" />
 				<param name="constant" value="-1.48297513" />
+<!--				<param name="constant" value="-1.28297513" />-->
 				<param name="marginalUtilityOfTraveling_util_hr" value="-0.09461678" />
 				<param name="dailyMonetaryConstant" value="-8.6" />
 			</parameterset>
@@ -209,9 +210,20 @@
 
 		<parameterset type="strategysettings">
 			<param name="strategyName" value="ReRoute"/>
-			<param name="weight" value="0.2"/>
+			<param name="weight" value="0.1"/>
 		</parameterset>
 
+		<parameterset type="strategysettings">
+			<param name="strategyName" value="SubtourModeChoice"/>
+			<param name="weight" value="0.1"/>
+		</parameterset>
+
+	</module>
+
+	<module name="subtourModeChoice" >
+		<param name="chainBasedModes" value="car,bicycle" />
+		<param name="considerCarAvailability" value="false" />
+		<param name="modes" value="car,pt,bicycle,walk" />
 	</module>
 
 	<module name="travelTimeCalculator" >
