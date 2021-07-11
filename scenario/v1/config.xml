@@ -11,7 +11,7 @@
 
 	<module name="network">
 		<!-- Road and bicycle infrastructure with public transport, from RMIT -->
-		<param name="inputNetworkFile" value="./network/network-v1.1_bicycle.xml.gz" />
+		<param name="inputNetworkFile" value="./network/v1.2/network.xml.gz" />
 	</module>
 
 	<module name="plans">
@@ -20,7 +20,7 @@
 	</module>
 
 	<module name="controler">
-		<param name="outputDirectory" value="./output/v1.1/10pct/exp1_withMC/" />
+		<param name="outputDirectory" value="./output/v1/10pct/exp1_withMC/" />
 		<param name="firstIteration" value="0" />
 		<param name="lastIteration" value="100" />
 		<param name="mobsim" value="qsim" />
@@ -38,8 +38,8 @@
 
 	</module>
 	<module name="transit">
-		<param name="transitScheduleFile" value="./network/pt/transitSchedule.xml.gz" />
-		<param name="vehiclesFile" value="./network/pt/transitVehicles.xml.gz" />
+		<param name="transitScheduleFile" value="./network/v1.2/pt/transitSchedule.xml.gz" />
+		<param name="vehiclesFile" value="./network/v1.2/pt/transitVehicles.xml.gz" />
 		<param name="transitModes" value="pt" />
 		<param name="useTransit" value="true" />
 		<param name="usingTransitInMobsim" value="true" />
