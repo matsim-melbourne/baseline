@@ -20,9 +20,9 @@
 	</module>
 
 	<module name="controler">
-		<param name="outputDirectory" value="./output/v1/10pct/exp3_withMC/" />
+		<param name="outputDirectory" value="./output/v1/10pct/exp4_withMC/" />
 		<param name="firstIteration" value="0" />
-		<param name="lastIteration" value="50" />
+		<param name="lastIteration" value="100" />
 		<param name="mobsim" value="qsim" />
 	</module>
 
@@ -93,22 +93,28 @@
 
 			<parameterset type="modeParams" ><!-- pt -->
 				<param name="mode" value="pt" />
-				<param name="constant" value="-1.48297513" />
-<!--				<param name="constant" value="-1.28297513" />-->
+<!--				<param name="constant" value="-1.48297513" />--><!-- orig -->
+<!--				<param name="constant" value="-1.18297513" />--><!-- 1st -->
+<!--				<param name="constant" value="-0.48297513" />-->  <!-- 2nd -->
+				<param name="constant" value="1.48297513" /> <!-- 3rd -->
 				<param name="marginalUtilityOfTraveling_util_hr" value="-0.09461678" />
 				<param name="dailyMonetaryConstant" value="-8.6" />
 			</parameterset>
 
 			<parameterset type="modeParams" ><!-- walk -->
 				<param name="mode" value="walk" />
-				<param name="constant" value="0.38552456" />
+<!--				<param name="constant" value="0.38552456" />--><!-- orig -->
+				<param name="constant" value="-5.38552456" /> <!-- 1st -->
+<!--				<param name="constant" value="-10.38552456" />  --> <!-- 2n -->
 				<param name="marginalUtilityOfDistance_util_m" value="0.0" />
 				<param name="marginalUtilityOfTraveling_util_hr" value="-0.43375109" />
 			</parameterset>
 
 			<parameterset type="modeParams" ><!-- bicycle -->
 				<param name="mode" value="bicycle" />
-				<param name="constant" value="-3.03305065" />
+<!--				<param name="constant" value="-3.03305065" />--><!-- orig -->
+<!--				<param name="constant" value="-2.53305065" />--><!-- 1st -->
+				<param name="constant" value="-2.83305065" /><!-- 2nd -->
 				<param name="marginalUtilityOfDistance_util_m" value="0.0" />
 				<param name="marginalUtilityOfTraveling_util_hr" value="-2.13717694" />
 			</parameterset>
