@@ -16,13 +16,15 @@
 
 	<module name="plans">
 		<!-- 1% sample -->
-		<param name="inputPlansFile" value="./demand/10pct/plan_bicycle.xml.gz" />
+<!--		<param name="inputPlansFile" value="./demand/1pct/planBicycleWithSubPop.xml.gz" />-->
+		<!-- 10% sample -->
+		<param name="inputPlansFile" value="./demand/10pct/planBicycleWithSubPop.xml.gz" />
 	</module>
 
 	<module name="controler">
-		<param name="outputDirectory" value="./output/v1/10pct/exp4_withMC/" />
+		<param name="outputDirectory" value="./output/v1/10pct/exp6_withMC_withSP/" />
 		<param name="firstIteration" value="0" />
-		<param name="lastIteration" value="100" />
+		<param name="lastIteration" value="70" />
 		<param name="mobsim" value="qsim" />
 	</module>
 
@@ -35,8 +37,20 @@
 			<param name="searchExtensionRadius" value="1000" />
 			<param name="initialSearchRadius" value="1000" />
 		</parameterset>
-
 	</module>
+	<module name="bicycle" >
+		<param name="bicycleMode" value="bicycle" />
+		<!-- marginalUtilityOfSurfacetype -->
+		<param name="marginalUtilityOfComfort_m" value="-2.0E-4" />
+		<!-- marginalUtilityOfGradient -->
+		<param name="marginalUtilityOfGradient_m_100m" value="-0.02" />
+		<!-- marginalUtilityOfStreettype -->
+		<param name="marginalUtilityOfInfrastructure_m" value="-0.04" />
+		<!-- maxBicycleSpeed -->
+		<param name="maxBicycleSpeedForRouting" value="6.944444444444445" />
+		<param name="motorizedInteraction" value="false" />
+	</module>
+
 	<module name="transit">
 		<param name="transitScheduleFile" value="./network/v1.2/pt/transitSchedule.xml.gz" />
 		<param name="vehiclesFile" value="./network/v1.2/pt/transitVehicles.xml.gz" />
@@ -74,6 +88,9 @@
 	</module>
 
 	<module name="planCalcScore">
+		<param name="BrainExpBeta" value="2.0" />
+		<param name="learningRate" value="1.0" />
+
 		<parameterset type="scoringParameters">
 			<param name="earlyDeparture" value="-0.0" />
 			<param name="lateArrival" value="-31.27237618	" />
@@ -93,28 +110,29 @@
 
 			<parameterset type="modeParams" ><!-- pt -->
 				<param name="mode" value="pt" />
-<!--				<param name="constant" value="-1.48297513" />--><!-- orig -->
+				<param name="constant" value="-1.48297513" /><!-- orig -->
 <!--				<param name="constant" value="-1.18297513" />--><!-- 1st -->
 <!--				<param name="constant" value="-0.48297513" />-->  <!-- 2nd -->
-				<param name="constant" value="1.48297513" /> <!-- 3rd -->
+<!--				<param name="constant" value="1.48297513" /> --><!-- 3rd -->
 				<param name="marginalUtilityOfTraveling_util_hr" value="-0.09461678" />
 				<param name="dailyMonetaryConstant" value="-8.6" />
 			</parameterset>
 
 			<parameterset type="modeParams" ><!-- walk -->
 				<param name="mode" value="walk" />
-<!--				<param name="constant" value="0.38552456" />--><!-- orig -->
-				<param name="constant" value="-5.38552456" /> <!-- 1st -->
+				<param name="constant" value="0.38552456" /><!-- orig -->
+<!--				<param name="constant" value="-5.38552456" /> --><!-- 1st -->
 <!--				<param name="constant" value="-10.38552456" />  --> <!-- 2n -->
+<!--				<param name="constant" value="-7.38552456" /> --><!-- 3rd -->
 				<param name="marginalUtilityOfDistance_util_m" value="0.0" />
 				<param name="marginalUtilityOfTraveling_util_hr" value="-0.43375109" />
 			</parameterset>
 
 			<parameterset type="modeParams" ><!-- bicycle -->
 				<param name="mode" value="bicycle" />
-<!--				<param name="constant" value="-3.03305065" />--><!-- orig -->
+				<param name="constant" value="-3.03305065" /><!-- orig -->
 <!--				<param name="constant" value="-2.53305065" />--><!-- 1st -->
-				<param name="constant" value="-2.83305065" /><!-- 2nd -->
+<!--				<param name="constant" value="-2.83305065" />--><!-- 2nd -->
 				<param name="marginalUtilityOfDistance_util_m" value="0.0" />
 				<param name="marginalUtilityOfTraveling_util_hr" value="-2.13717694" />
 			</parameterset>
@@ -210,18 +228,26 @@
 		<param name="fractionOfIterationsToDisableInnovation" value="0.8" />
 
 		<parameterset type="strategysettings">
-			<param name="strategyName" value="BestScore"/>
+			<param name="strategyName" value="ChangeExpBeta"/>
 			<param name="weight" value="0.8"/>
+			<param name="subpopulation" value="Worker" />
+		</parameterset>
+		<parameterset type="strategysettings">
+			<param name="strategyName" value="ChangeExpBeta"/>
+			<param name="weight" value="0.9"/>
+			<param name="subpopulation" value="NonWorker" />
 		</parameterset>
 
 		<parameterset type="strategysettings">
 			<param name="strategyName" value="ReRoute"/>
 			<param name="weight" value="0.1"/>
+			<param name="subpopulation" value="Worker,NonWorker" />
 		</parameterset>
 
 		<parameterset type="strategysettings">
 			<param name="strategyName" value="SubtourModeChoice"/>
 			<param name="weight" value="0.1"/>
+			<param name="subpopulation" value="Worker" />
 		</parameterset>
 
 	</module>
