@@ -6,12 +6,12 @@
 		<param name="randomSeed" value="4711" />
 		<param name="coordinateSystem" value="EPSG:28355" />
 		<!-- global number of threads (not including mobsim): pick CPU cores -->
-		<param name = "numberOfThreads" value="8"/>
+		<param name = "numberOfThreads" value="16"/>
 	</module>
 
 	<module name="network">
 		<!-- Road and bicycle infrastructure with public transport, from RMIT -->
-		<param name="inputNetworkFile" value="./network/v1.2/network.xml.gz" />
+		<param name="inputNetworkFile" value="./network/v1.2/network_v1.2.xml.gz" />
 	</module>
 
 	<module name="plans">
@@ -20,9 +20,9 @@
 	</module>
 
 	<module name="controler">
-		<param name="outputDirectory" value="./output/v1/10pct/exp1_withMC/" />
+		<param name="outputDirectory" value="./output/v1/10pct/exp3_withMC/" />
 		<param name="firstIteration" value="0" />
-		<param name="lastIteration" value="100" />
+		<param name="lastIteration" value="50" />
 		<param name="mobsim" value="qsim" />
 	</module>
 
@@ -32,8 +32,8 @@
 		<parameterset type="intermodalAccessEgress">
 			<param name="mode" value="walk" />
 			<param name="maxRadius" value="10000" />
-			<param name="searchExtensionRadius" value="500" />
-			<param name="initialSearchRadius" value="500" />
+			<param name="searchExtensionRadius" value="1000" />
+			<param name="initialSearchRadius" value="1000" />
 		</parameterset>
 
 	</module>
@@ -58,7 +58,7 @@
 		<param name="trafficDynamics" value="kinematicWaves" />
 
 		<!-- threads for QSim, adjust based on number of cores you have -->
-		<param name = "numberOfThreads" value="8"/>
+		<param name = "numberOfThreads" value="16"/>
 		<param name = "flowCapacityFactor" value = "0.1"/>  <!-- 10pct sample -->
 		<param name = "storageCapacityFactor" value = "0.1"/>  <!-- 10pct sample -->
 		<param name = "startTime" value="00:00:00"/>
