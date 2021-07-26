@@ -10,7 +10,7 @@
 	</module>
 
 	<module name="network">
-		<!-- Road and bicycle infrastructure with public transport, from RMIT -->
+		<!-- Road and bike infrastructure with public transport, from RMIT -->
 		<param name="inputNetworkFile" value="./network/v1.2/network_v1.2.xml.gz" />
 	</module>
 
@@ -53,7 +53,7 @@
 
 	<module name="qsim">
 		<param name="vehiclesSource" value="modeVehicleTypesFromVehiclesData" />
-		<param name="mainMode" value="car,bicycle" />
+		<param name="mainMode" value="car,bike" />
 		<param name="linkDynamics" value="PassingQ" />
 		<param name="trafficDynamics" value="kinematicWaves" />
 
