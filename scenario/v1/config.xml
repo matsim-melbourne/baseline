@@ -11,12 +11,16 @@
 
 	<module name="network">
 		<!-- Road and bike infrastructure with public transport, from RMIT -->
+<<<<<<< HEAD
 		<param name="inputNetworkFile" value="../v1.2/NetworkPt_Aug18/network.xml" />
+=======
+		<param name="inputNetworkFile" value="./network/v1.2/network_v1.2.xml.gz" />
+>>>>>>> 33f435ec99c85d11896c59c70fa9297c2ba40930
 	</module>
 
 	<module name="plans">
 		<!-- 1% sample -->
-<!--		<param name="inputPlansFile" value="../v1.2/plan/10pct/plan_10pct_Aug17.xml.gz" />-->
+	<param name="inputPlansFile" value="../v1.2/plan/10pct/plan_10pct_Aug17.xml.gz" />-->
 		<param name="inputPlansFile" value="../../output/v1/10pct/exp1_withMC_hermes/ITERS/it.0/0.plans.xml.gz" />
 
 	</module>
@@ -191,6 +195,7 @@
 			<param name="teleportedModeFreespeedFactor" value="null" />
 			<param name="teleportedModeSpeed" value="1.3" />
 		</parameterset>
+
 	</module>
 
 	<module name="vehicles" >

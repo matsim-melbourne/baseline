@@ -8,8 +8,6 @@ import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
 import org.matsim.api.core.v01.network.Network;
 import org.matsim.api.core.v01.network.NetworkWriter;
-import org.matsim.contrib.bicycle.BicycleConfigGroup;
-import org.matsim.contrib.bicycle.Bicycles;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.config.groups.PlanCalcScoreConfigGroup;
@@ -58,12 +56,12 @@ public class RunBaselineScenario {
             if (cleanNetwork.equals("true")) {
                 System.out.println("About to clean the network");
                 this.network = this.scenario.getNetwork();
-                cleanNetworkForCarBicycle(network);
+                cleanNetworkForCar(network);
             }
             this.controler = new Controler(scenario);
         }
 
-    private static void cleanNetworkForCarBicycle(Network network){
+    private static void cleanNetworkForCar(Network network){
         System.out.println("cleaning the network");
         Set<String> mode_Set = new HashSet<String>();
         mode_Set.add("car");
@@ -73,8 +71,6 @@ public class RunBaselineScenario {
         new MultimodalNetworkCleaner(network).run(mode_Set2);
         new NetworkWriter(network).write("./networkCleaned.xml.gz");
     }
-
-
 
     public void run(){
         controler.addOverridingModule(new SBBTransitModule());
