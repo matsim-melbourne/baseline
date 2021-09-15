@@ -6,38 +6,49 @@
 		<param name="randomSeed" value="4711" />
 		<param name="coordinateSystem" value="EPSG:28355" />
 		<!-- global number of threads (not including mobsim): pick CPU cores -->
-		<param name = "numberOfThreads" value="16"/>
+		<param name = "numberOfThreads" value="8"/>
 	</module>
 
 	<module name="network">
 		<!-- Road and bike infrastructure with public transport, from RMIT -->
-		<param name="inputNetworkFile" value="../v1.2/NetworkPt_Aug18/network.xml" />
+		<param name="inputNetworkFile" value="./network/network.xml" />
 	</module>
 
 	<module name="plans">
 		<!-- 1% sample -->
-	<param name="inputPlansFile" value="../v1.2/plan/10pct/plan_10pct_Aug17.xml.gz" />-->
-		<param name="inputPlansFile" value="../../output/v1/10pct/exp1_withMC_hermes/ITERS/it.0/0.plans.xml.gz" />
+	<param name="inputPlansFile" value="./demand/output-Sep10-01pct/8.xml/plan.xml" />
+		<!-- <param name="inputPlansFile" value="../../output/v1/10pct/exp1_withMC_hermes/ITERS/it.0/0.plans.xml.gz" /> -->
 
-	</module>
+</module>
 
-	<module name="controler">
-		<param name="outputDirectory" value="./output/v1/10pct/exp4_withMC_hermes_500/" />
-		<param name="firstIteration" value="0" />
-		<param name="lastIteration" value="500" />
-		<param name="mobsim" value="hermes" />
-		<param name="writeEventsInterval" value="50" />
-		<!-- iterationNumber % writePlansInterval == 0 defines (hopefully) in which iterations plans are written to a file. `0' disables plans writing completely.  Some plans in early iterations are always written -->
+<module name="controler">
+   <param name="outputDirectory" value="../../output/0.1pct/exp_15Sep" />
+   <param name="firstIteration" value="0" />
+   <param name="lastIteration" value="500" />
+   <param name="mobsim" value="hermes" />
+   <param name="writeEventsInterval" value="50" />
+   <!-- iterationNumber % writePlansInterval == 0 defines (hopefully) in which iterations plans are written to a file. `0' disables plans writing completely.  Some plans in early iterations are always written -->
 		<param name="writePlansInterval" value="50" />
 	</module>
 
 	<module name="transit">
-		<param name="transitScheduleFile" value="../v1.2/NetworkPt_Aug18/gtfs/transitSchedule.xml" />
-		<param name="vehiclesFile" value="../v1.2/NetworkPt_Aug18/gtfs/transitVehicles.xml" />
+		<param name="transitScheduleFile" value= "./network/transitSchedule.xml"  />
+		<param name="vehiclesFile" value="./network/transitVehicles.xml"  />
 		<param name="transitModes" value="pt" />
 		<param name="useTransit" value="true" />
 		<param name="usingTransitInMobsim" value="true" />
 		<param name="routingAlgorithmType" value="SwissRailRaptor" />
+	</module>
+
+	<module name="swissRailRaptor">
+		<param name="useCapacityConstraints" value="true" />
+		<param name="useIntermodalAccessEgress" value="true" />
+		<parameterset type="intermodalAccessEgress">
+			<param name="mode" value="walk" />
+			<param name="maxRadius" value="10000" />
+			<param name="searchExtensionRadius" value="2000" />
+			<param name="initialSearchRadius" value="7000" />
+		</parameterset>
 	</module>
 
 	<module name="transitRouter" >
@@ -47,8 +58,8 @@
 
 	<module name="hermes">
 		<param name = "endTime" value="30:00:00"/>
-		<param name = "flowCapacityFactor" value = "0.1"/>  <!-- 10pct sample -->
-		<param name = "storageCapacityFactor" value = "0.3"/>  <!-- 10pct sample -->
+		<param name = "flowCapacityFactor" value = "0.01"/>  <!-- 1pct sample -->
+		<param name = "storageCapacityFactor" value = "0.03"/>  <!-- 1pct sample -->
 		<param name="mainMode" value="car,bike" />
 		<param name="stuckTime" value="30"/>
 		<param name="useDeterministicPt" value="true"/>
@@ -59,7 +70,7 @@
 		<param name="linkDynamics" value="PassingQ" />
 		<param name="trafficDynamics" value="kinematicWaves" />
 		<!-- threads for QSim, adjust based on number of cores you have -->
-		<param name = "numberOfThreads" value="16"/>
+		<param name = "numberOfThreads" value="8"/>
 
 	</module>
 
@@ -67,7 +78,7 @@
 		<!-- Null means let matsim decide -->
 		<param name="estimatedNumberOfEvents" value="null" />
 		<!-- each handler will be assigned to a thread if enabled -->
-		<param name="numberOfThreads" value="16" />
+		<param name="numberOfThreads" value="8" />
 		<param name="oneThreadPerHandler" value="true" />
 	</module>
 
@@ -189,7 +200,7 @@
 			<param name="beelineDistanceFactor" value="1.3" />
 			<param name="mode" value="walk" />
 			<param name="teleportedModeFreespeedFactor" value="null" />
-			<param name="teleportedModeSpeed" value="1.3" />
+			<param name="teleportedModeSpeed" value="0.65" />
 		</parameterset>
 
 	</module>
